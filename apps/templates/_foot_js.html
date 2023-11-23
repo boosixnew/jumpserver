@@ -10,13 +10,34 @@
 <script src="{% static 'js/plugins/select2/select2.full.min.js' %}"></script>
 <script src="{% static 'js/plugins/select2/i18n/zh-CN.js' %}"></script>
 <script>
-activeNav("{{ FORCE_SCRIPT_NAME }}");
-$(document).ready(function(){
-    setAjaxCSRFToken();
-    $('textarea').attr('rows', 5);
-    if ($('.tooltip')[0]) {
-        $('.tooltip').tooltip();
-    }
-    $.fn.select2.defaults.set('language', getUserLang())
-});
+    activeNav("{{ FORCE_SCRIPT_NAME }}");
+    $(document).ready(function () {
+        setAjaxCSRFToken();
+        $('textarea').attr('rows', 5);
+        if ($('.tooltip')[0]) {
+            $('.tooltip').tooltip();
+        }
+        $.fn.select2.defaults.set('language', getUserLang())
+    });
 </script>
+{% if INTERFACE.icp_text and INTERFACE.gongan_text %}
+    <style>
+        .footer_beian a {
+            color: #495770;
+        }
+
+        .footer_beian {
+            position: absolute;
+            top: 98%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <div class="footer_beian">
+        <a target="_blank" rel="noopener noreferrer" href={{ INTERFACE.icp_link }}>{{ INTERFACE.icp_text }}</a>
+        <a target="_blank" rel="noopener noreferrer"
+           href={{ INTERFACE.gongan_link }}>
+            {{ INTERFACE.gongan_text }}
+        </a>
+    </div>
+{% endif %}
